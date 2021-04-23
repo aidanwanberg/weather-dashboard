@@ -33,12 +33,33 @@
 
                 <div class="input-group">
 
-                    <input type="text" class="form-control" placeholder="City" aria-label="city" aria-describedby="button-city"/>
+                    <input type="text" id="city-input" placeholder="City"/>
+                    
+                    <button class="btn btn-primary" type="button" id="search-button">
 
+                        <i class="fa fa-search" aria-hidden="true"></i>
+
+                    </button>
+
+                    <ul class="search-history"></ul>
 
                 </div>
 
+                <div>
 
+                    <div id="current-weather">
+                        <h2 id="city-header"></h2>
+                        <p id="temperature"></p>
+                        <p id="humidity"></p>
+                        <p id="wind"></p>
+                        <p id="uvi"></p>
+                    </div>
+
+                    <div>
+                        
+                    </div>
+
+                </div>
             </div>
 
 
@@ -47,5 +68,8 @@
 
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
