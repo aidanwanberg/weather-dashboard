@@ -35,17 +35,38 @@ searchButton.addEventListener("click", async function() {
             var humidityValue = data.main.humidity;
             var windValue = data.wind.speed;
             console.log(data);
-            var latValue = data.coord.lat;
-            var lonValue = data.coord.lon;
+            // var latValue = data.coord.lat;
+            // var lonValue = data.coord.lon;
 
             cityHeader.innerHTML = cityValue + date.format(" M/DD/YYYY ");
-            temperature.innerHTML = "Temperature:" + temperatureValue + "Fahrenheit";
-            humidity.innerHTML = "Humidity:" + humidityValue + "%";
-            wind.innerHTML = "Wind Speed:" + temperatureValue + "MPH";
+            temperature.innerHTML = "Temperature: " + temperatureValue + " Fahrenheit";
+            humidity.innerHTML = "Humidity: " + humidityValue + " %";
+            wind.innerHTML = "Wind Speed: " + temperatureValue + " MPH";
 
     } else {
         alert("error!");
     }
 })
+
+async function coordinates(latValue, lonValue) {
+
+    var latLon =
+
+    "http://api.openweathermap.org/data/2.5/weather?lat=" +
+    
+    latValue +
+    
+    "&lon=" +
+    
+    lonValue +
+    
+    "&appid=562f6213ad0815575de94f7b40671638";
+
+    var response = await fetch(latLon);
+
+    
+
+
+}
 
 
