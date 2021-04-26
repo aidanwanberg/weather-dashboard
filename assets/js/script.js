@@ -12,7 +12,7 @@ searchButton.addEventListener("click", async function() {
 
     var openWeatherApi = 
     
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
 
     cityInput.value +
     
@@ -37,7 +37,7 @@ searchButton.addEventListener("click", async function() {
 
             var weatherIcon = data.weather[0].icon;
 
-            var iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+            var iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
 
             var iconImg = `<img src="${iconUrl}"/>`;
 
@@ -59,7 +59,7 @@ async function uvIndex(lat, lon) {
 
     var latLon =
 
-    "http://api.openweathermap.org/data/2.5/onecall?lat=" +
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
     
     lat +
     
@@ -121,7 +121,7 @@ async function uvIndex(lat, lon) {
             var weeklyHumidity = weeklyData.humidity;
 
             var weatherIcon = weeklyData.weather[0].icon;
-            var iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+            var iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
             var iconImg = `<img src="${iconUrl}" style="width: 40px"/>`;
 
             weeklyForecastDiv += `
