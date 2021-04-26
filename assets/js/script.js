@@ -38,17 +38,17 @@ searchButton.addEventListener("click", async function() {
             
             await uvIndex(data.coord.lat, data.coord.lon);
 
-            var icon = data.weather[0].icon;
+            var weatherIcon = data.weather[0].icon;
 
-            var iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+            var iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
 
-            var icon = `<img src="${iconUrl}"`;
-
-
+            var iconImg = `<img src="${iconUrl}"/>`;
 
 
 
-            cityHeader.innerHTML = cityValue + date.format(" M/DD/YYYY ");
+
+
+            cityHeader.innerHTML = cityValue + date.format(" M/DD/YYYY ") + iconImg;
             temperature.innerHTML = "Temperature: " + temperatureValue + " Fahrenheit";
             humidity.innerHTML = "Humidity: " + humidityValue + " %";
             wind.innerHTML = "Wind Speed: " + windValue + " MPH";
@@ -104,20 +104,20 @@ async function uvIndex(lat, lon) {
 
 
 
-            var icon = weeklyData.weather[0].icon;
+            var weatherIcon = weeklyData.weather[0].icon;
 
-            var iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
-            var weatherIcon = `<img src="${iconUrl}" style="width: 100px"/>`;
+            var iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+            var iconImg = `<img src="${iconUrl}" style="width: 40px"/>`;
 
             weeklyForecastDiv += `
 
-                <h5>This Week's Forecast</h5>
+                <div class="card" style="flex: 1">
 
-                <div class="card">
+                    <h5>${iconImg}</h5>
 
                     <p>Temperature: ${weeklyTemp} Fahrenheit</p>
                     <p>Wind Speed: ${weeklyWind} MPH</p>
-                    <p>Humidity: ${weeklyHumidity} </p>
+                    <p>Humidity: ${weeklyHumidity} %</p>
 
                 </div>
             `
