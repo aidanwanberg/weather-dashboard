@@ -15,9 +15,9 @@ searchButton.addEventListener("click", async function() {
 
     var openWeatherApi = 
     
-    "http://api.openweathermap.org/data/2.5/weather?q="
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
 
-    + cityInput.value +
+    cityInput.value +
     
     "&units=imperial&appid=562f6213ad0815575de94f7b40671638";
 
@@ -35,38 +35,98 @@ searchButton.addEventListener("click", async function() {
             var humidityValue = data.main.humidity;
             var windValue = data.wind.speed;
             console.log(data);
-            // var latValue = data.coord.lat;
-            // var lonValue = data.coord.lon;
+            
+            await uvIndex(data.coord.lat, data.coord.lon);
+
+            var icon = data.weather[0].icon;
+
+            var iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+
+            var icon = `<img src="${iconUrl}"`;
+
+
+
+
 
             cityHeader.innerHTML = cityValue + date.format(" M/DD/YYYY ");
             temperature.innerHTML = "Temperature: " + temperatureValue + " Fahrenheit";
             humidity.innerHTML = "Humidity: " + humidityValue + " %";
-            wind.innerHTML = "Wind Speed: " + temperatureValue + " MPH";
+            wind.innerHTML = "Wind Speed: " + windValue + " MPH";
 
     } else {
         alert("error!");
     }
 })
 
-async function coordinates(latValue, lonValue) {
+async function uvIndex(lat, lon) {
 
     var latLon =
 
-    "http://api.openweathermap.org/data/2.5/weather?lat=" +
+    "http://api.openweathermap.org/data/2.5/onecall?lat=" +
     
-    latValue +
+    lat +
     
     "&lon=" +
     
-    lonValue +
+    lon +
     
-    "&appid=562f6213ad0815575de94f7b40671638";
+    "&units=imperial&appid=562f6213ad0815575de94f7b40671638";
 
     var response = await fetch(latLon);
 
-    
+    if (response.ok) {
+
+        console.log(response);
+        
+        var data = await response.json();
+
+        console.log(data);
+
+        // var uviValue = data.current.uvi;
+
+        var weeklyForecastData = data.daily;
+
+        console.log(weeklyForecastData);
 
 
+        // uvi.innerHTML = "UVI: " + uviValue;
+
+        weeklyForecastDiv = '';
+
+        for ( var i = 0; i < weeklyForecastData.length; i++) { 
+            if (i >= 5)
+            break;
+
+            var weeklyData = weeklyForecastData[i];
+            var weeklyTemp = weeklyData.temp.day;
+            var weeklyWind = weeklyData.wind_speed;
+            var weeklyHumidity = weeklyData.humidity;
+
+
+
+            var icon = weeklyData.weather[0].icon;
+
+            var iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+            var weatherIcon = `<img src="${iconUrl}" style="width: 100px"/>`;
+
+            weeklyForecastDiv += `
+
+                <h5>This Week's Forecast</h5>
+
+                <div class="card">
+
+                    <p>Temperature: ${weeklyTemp} Fahrenheit</p>
+                    <p>Wind Speed: ${weeklyWind} MPH</p>
+                    <p>Humidity: ${weeklyHumidity} </p>
+
+                </div>
+            `
+        }
+
+        console.log(weeklyForecastDiv);
+        var weeklyWeather = document.getElementById("weekly-weather");
+        weeklyWeather.innerHTML = weeklyForecastDiv
+    }
 }
 
 
