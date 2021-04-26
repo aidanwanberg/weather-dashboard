@@ -1,6 +1,3 @@
-
-
-
 var cityInput = document.getElementById("city-input");
 var searchButton = document.getElementById("search-button");
 var cityHeader = document.getElementById("city-header");
@@ -82,14 +79,35 @@ async function uvIndex(lat, lon) {
 
         console.log(data);
 
-        // var uviValue = data.current.uvi;
+        var uviValue = data.current.uvi;
 
         var weeklyForecastData = data.daily;
 
         console.log(weeklyForecastData);
 
 
-        // uvi.innerHTML = "UVI: " + uviValue;
+        uvi.innerHTML = "UVI: " + uviValue;
+
+        console.log(uviValue);
+
+        if (uviValue < 4) {
+
+            document.getElementById("favorable").style.visibility = "visible";
+            document.getElementById("moderate").style.visibility = "hidden";
+            document.getElementById("severe").style.visibility = "hidden";
+            
+        } else if (uviValue < 6) {
+
+            document.getElementById("moderate").style.visibility = "visible";
+            document.getElementById("favorable").style.visibility = "hidden";
+            document.getElementById("severe").style.visibility = "hidden";
+
+        } else {
+
+            document.getElementById("severe").style.visibility = "visible";
+            document.getElementById("favorable").style.visibility = "hidden";
+            document.getElementById("moderate").style.visibility = "hidden";
+        }
 
         weeklyForecastDiv = '';
 
@@ -102,10 +120,7 @@ async function uvIndex(lat, lon) {
             var weeklyWind = weeklyData.wind_speed;
             var weeklyHumidity = weeklyData.humidity;
 
-
-
             var weatherIcon = weeklyData.weather[0].icon;
-
             var iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
             var iconImg = `<img src="${iconUrl}" style="width: 40px"/>`;
 
@@ -113,7 +128,10 @@ async function uvIndex(lat, lon) {
 
                 <div class="card" style="flex: 1">
 
-                    <h5>${iconImg}</h5>
+                    <h5>
+                    ${moment(new Date(weeklyData.dt * 1000)).format(" M/DD/YYYY ")}
+                    ${iconImg}
+                    </h5>
 
                     <p>Temperature: ${weeklyTemp} Fahrenheit</p>
                     <p>Wind Speed: ${weeklyWind} MPH</p>
@@ -128,5 +146,4 @@ async function uvIndex(lat, lon) {
         weeklyWeather.innerHTML = weeklyForecastDiv
     }
 }
-
 

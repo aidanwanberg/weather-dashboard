@@ -1,0 +1,14 @@
+#favorable {
+    color: black;
+    background-color: greenyellow;
+}
+
+#moderate {
+    color: black;
+    background-color: orange;
+}
+
+#severe {
+    color: black;
+    background-color: red;
+}
