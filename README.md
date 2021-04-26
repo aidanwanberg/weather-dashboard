@@ -17,10 +17,10 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 Description:
-
+Built a weather dashboard that features dynamically updated HTML and CSS. When a user enters a city name and clicks search, then they are presented with that city's weather for the day and the rest of the week. The user will be able to see the temperature, wind speed, humidity, and UVI of the city they entered. In addition, various icons are displayed to portray the weather of a given day. Also, the color of the UVI section will change depending on the UVI value of the current day.
 
 Screenshots:
-<img src="./assets/images/">
+<img src="./assets/images/screenshot.png">
 
 URL of Deployed Application: https://aidanwanberg.github.io/weather-dashboard/
 
